@@ -1,0 +1,1 @@
+INSERT INTO users VALUES (1,'shohei koyanagi','shohei','koyanagi','$2a$10$yE0bw/o1sdySw4000MLSXef/1VYN2KG.FxA7FpFKn37aCV.eGwle6','test@test.co.jp','1');
