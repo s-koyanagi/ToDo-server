@@ -19,9 +19,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        // 埋め込みページ制御を無効化(h2-console用)
+        http.headers().frameOptions().disable();
+
+        // 認証周りの設定
         http.authorizeRequests()
                 // 認証なしでアクセスできるURL
-                .mvcMatchers("/prelogin","/h2-console/**").permitAll()
+                .mvcMatchers("/pre_login","/h2-console/**").permitAll()
                 // 認証済みでUSERロールを持っているユーザのみアクセスできるURL
                 .mvcMatchers("/user/**").hasRole("USER")
                 // 認証済みでADMINロールを持っているユーザのみユーザのみアクセスできるURL
@@ -41,9 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // ログインURLの設定
                 .loginProcessingUrl("/login").permitAll()
                 // ログインに必要なユーザ名パラメータの指定
-                .usernameParameter("email")
+//                .usernameParameter("email")
                 // ログインに必要なパスワードの設定
-                .passwordParameter("pass")
+//                .passwordParameter("pass")
                 // TODO:ログイン成功した場合の処理
 //                .successHandler()
                 // TODO:ログイン失敗した場合の処理
@@ -61,10 +66,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // CSRFに関する処理
             .csrf()
                 // CSRF無効設定
-//                .disable()
+                .disable();
                 // CSRFトークン例外設定
 //                .ignoringAntMatchers("/login")
                 // CSRFトークン付与の設定
-                .csrfTokenRepository(new CookieCsrfTokenRepository());
+//                .csrfTokenRepository(new CookieCsrfTokenRepository());
     }
 }
