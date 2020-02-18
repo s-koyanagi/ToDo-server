@@ -39,3 +39,6 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+//文字化け対策
+tasks.withType(AbstractCompile)*.options*.encoding = tasks.withType(GroovyCompile)*.groovyOptions*.encoding = 'UTF-8'
