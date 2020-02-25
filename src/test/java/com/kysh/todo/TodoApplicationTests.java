@@ -1,4 +1,4 @@
-package jp.co.kysh.todo;
+package com.kysh.todo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

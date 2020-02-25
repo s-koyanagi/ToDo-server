@@ -1,4 +1,4 @@
-package jp.co.kysh.todo.security;
+package com.kysh.todo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .exceptionHandling()
                 // TODO:認証が必要なURLに未認証状態でアクセスした場合の処理
 //                .authenticationEntryPoint()
-                // TODO:認証済だが権限がないURLへアクセスした場合の処理
+                // TODO:認証済で権限がないURLへアクセスした場合の処理
 //                .accessDeniedHandler()
             .and()
             // ログイン時の処理
