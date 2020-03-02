@@ -4,16 +4,31 @@ plugins {
 	id 'java'
 }
 
-apply plugin: 'idea'
-
-// DOMA用設定
-idea.module.inheritOutputDirs = true
-processResources.destinationDir = compileJava.destinationDir
-compileJava.dependsOn processResources
+apply plugin: 'java'
 
 group = 'com.kysh'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+task copyDomaResources(type: Sync)  {
+	from sourceSets.main.resources.srcDirs
+	into compileJava.destinationDir
+	include 'doma.compile.config'
+	include 'META-INF/**/*.sql'
+	include 'META-INF/**/*.script'
+}
+
+compileJava {
+	// Depend on the above task
+	dependsOn copyDomaResources
+	options.encoding = 'UTF-8'
+}
+
+compileTestJava {
+	options.encoding = 'UTF-8'
+	// Disable the annotation processors during the test run
+	options.compilerArgs = ['-proc:none']
+}
 
 configurations {
 	developmentOnly
