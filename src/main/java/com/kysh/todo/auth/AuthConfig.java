@@ -1,11 +1,25 @@
 package com.kysh.todo.auth;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 @EnableWebSecurity
 public class AuthConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    AuthEntryPoint authEntryPoint;
+
+    @Autowired
+    AuthDeniedHandler authDeniedHandler;
+
+    @Autowired
+    AuthSuccessHandler authSuccessHandler;
+
+    @Autowired
+    AuthFailureHandler authFailureHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -16,7 +30,7 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
         // 認証周りの設定
         http.authorizeRequests()
                 // 認証なしでアクセスできるURL
-                .mvcMatchers("/pre_login","/h2-console/**").permitAll()
+                .mvcMatchers("/pre_login","/hello/**","/h2-console/**").permitAll()
                 // 認証済みでUSERロールを持っているユーザのみアクセスできるURL
                 .mvcMatchers("/user/**").hasRole("USER")
                 // 認証済みでADMINロールを持っているユーザのみユーザのみアクセスできるURL
@@ -26,23 +40,23 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
             .and()
             // アクセス時の例外処理
             .exceptionHandling()
-                // TODO:認証が必要なURLに未認証状態でアクセスした場合の処理
-//                .authenticationEntryPoint()
-                // TODO:認証済で権限がないURLへアクセスした場合の処理
-//                .accessDeniedHandler()
+                // 認証が必要なURLに未認証状態でアクセスした場合の処理
+                .authenticationEntryPoint(authEntryPoint)
+                // 認証済で権限がないURLへアクセスした場合の処理
+                .accessDeniedHandler(authDeniedHandler)
             .and()
             // ログイン時の処理
             .formLogin()
                 // ログインURLの設定
                 .loginProcessingUrl("/login").permitAll()
                 // ログインに必要なユーザ名パラメータの指定
-//                .usernameParameter("email")
+                .usernameParameter("email")
                 // ログインに必要なパスワードの設定
-//                .passwordParameter("pass")
-                // TODO:ログイン成功した場合の処理
-//                .successHandler()
-                // TODO:ログイン失敗した場合の処理
-//                .failureHandler()
+                .passwordParameter("password")
+                // ログイン成功した場合の処理
+                .successHandler(authSuccessHandler)
+                // ログイン失敗した場合の処理
+                .failureHandler(authFailureHandler)
             .and()
             // ログアウト時の処理
             .logout()
@@ -50,8 +64,8 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
-                // TODO:ログアウトが正常終了した場合の処理
-//                .logoutSuccessHandler()
+                // ログアウトが正常終了した場合の処理
+                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
             .and()
             // CSRFに関する処理
             .csrf()
