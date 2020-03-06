@@ -1,9 +1,12 @@
 package com.kysh.todo.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 @EnableWebSecurity
@@ -21,16 +24,23 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AuthFailureHandler authFailureHandler;
 
+    @Autowired
+    AuthService authService;
+
+    @Override
+    public void configure(WebSecurity web) {
+        // セキュリティ設定を無視するリクエスト設定
+        web.ignoring().antMatchers("/h2-console/**");
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         // 埋め込みページ制御を無効化(h2-console用)
         http.headers().frameOptions().disable();
-
         // 認証周りの設定
         http.authorizeRequests()
                 // 認証なしでアクセスできるURL
-                .mvcMatchers("/pre_login","/hello/**","/h2-console/**").permitAll()
+                .mvcMatchers("/test/hello").permitAll()
                 // 認証済みでUSERロールを持っているユーザのみアクセスできるURL
                 .mvcMatchers("/user/**").hasRole("USER")
                 // 認証済みでADMINロールを持っているユーザのみユーザのみアクセスできるURL
@@ -75,5 +85,10 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 //                .ignoringAntMatchers("/login")
                 // CSRFトークン付与の設定
 //                .csrfTokenRepository(new CookieCsrfTokenRepository());
+    }
+
+    @Autowired
+    void configureAuthenticationManager(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(authService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }
