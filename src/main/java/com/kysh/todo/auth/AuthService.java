@@ -1,6 +1,5 @@
 package com.kysh.todo.auth;
 
-import com.kysh.todo.domain.entity.User;
 import com.kysh.todo.domain.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
