@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'org.seasar.doma.compile' version '1.1.0'
 	id 'java'
 }
 
@@ -8,36 +9,18 @@ apply plugin: 'java'
 
 group = 'com.kysh'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
-task copyDomaResources(type: Sync)  {
-	from sourceSets.main.resources.srcDirs
-	into compileJava.destinationDir
-	include 'doma.compile.config'
-	include 'META-INF/**/*.sql'
-	include 'META-INF/**/*.script'
-}
 
 compileJava {
-	// Depend on the above task
-	dependsOn copyDomaResources
 	options.encoding = 'UTF-8'
+	options.compilerArgs = ['-Adoma.dao.subpackage=impl', '-Adoma.dao.suffix=Impl']
 }
 
 compileTestJava {
 	options.encoding = 'UTF-8'
-	// Disable the annotation processors during the test run
-	options.compilerArgs = ['-proc:none']
 }
 
 configurations {
 	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
 }
 
 repositories {
@@ -49,7 +32,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.seasar.doma.boot:doma-spring-boot-starter:1.1.1'
-	implementation 'org.seasar.doma:doma:2.27.1'
+	implementation "org.seasar.doma:doma-core:2.44.3"
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -57,7 +40,7 @@ dependencies {
 	}
 	testImplementation 'org.springframework.security:spring-security-test'
 	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.seasar.doma:doma:2.27.1'
+	annotationProcessor "org.seasar.doma:doma-processor:2.44.3"
 	annotationProcessor 'org.projectlombok:lombok'
 }
 

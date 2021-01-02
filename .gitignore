@@ -21,6 +21,7 @@ build/
 *.ipr
 out/
 production/
+generated/
 
 ### NetBeans ###
 /nbproject/private/
