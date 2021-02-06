@@ -12,8 +12,8 @@ CREATE TABLE IF NOT EXISTS users(
 
 CREATE TABLE IF NOT EXISTS tasks(
   id SERIAL
-  ,project_id integer
+  ,project_id integer NOT NULL
   ,subject VARCHAR(128) NOT NULL
-  ,status_Id integer
+  ,status_Id integer NOT NULL
   ,dead_line date
 )
