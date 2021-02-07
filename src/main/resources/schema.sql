@@ -16,4 +16,16 @@ CREATE TABLE IF NOT EXISTS tasks(
   ,subject VARCHAR(128) NOT NULL
   ,status_Id integer NOT NULL
   ,dead_line date
+);
+
+CREATE TABLE IF NOT EXISTS projects(
+  id SERIAL
+  ,project_name VARCHAR(128) NOT NULL
+  ,color VARCHAR(128) NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS status(
+  id SERIAL
+  ,status_name VARCHAR(128) NOT NULL
+  ,color VARCHAR(128) NOT NULL
 )
