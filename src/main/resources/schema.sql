@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS users(
-  id SERIAL
+  user_id SERIAL
   ,full_name VARCHAR(128) NOT NULL
   ,first_name VARCHAR(128) NOT NULL
   ,last_name VARCHAR(128) NOT NULL
@@ -11,21 +11,24 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 CREATE TABLE IF NOT EXISTS tasks(
-  id SERIAL
+  task_id SERIAL
   ,project_id integer NOT NULL
   ,subject VARCHAR(128) NOT NULL
   ,status_Id integer NOT NULL
   ,dead_line date
+  ,PRIMARY KEY (task_id)
 );
 
 CREATE TABLE IF NOT EXISTS projects(
-  id SERIAL
+  project_id SERIAL
   ,project_name VARCHAR(128) NOT NULL
   ,color VARCHAR(128) NOT NULL
-)
+  ,PRIMARY KEY(project_id)
+);
 
 CREATE TABLE IF NOT EXISTS status(
-  id SERIAL
+  status_id SERIAL
   ,status_name VARCHAR(128) NOT NULL
   ,color VARCHAR(128) NOT NULL
-)
+  ,PRIMARY KEY(status_id)
+);
