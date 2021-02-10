@@ -12,6 +12,7 @@ import org.seasar.doma.Table;
 @Entity
 @Table(name = "status")
 public class Status {
+
     @Id
     @Column(name = "status_id")
     private Integer statusId;
