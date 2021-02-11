@@ -7,7 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TaskService {
@@ -15,10 +16,13 @@ public class TaskService {
     @Autowired
     TaskDao taskDao;
 
-    public TaskDto getTaskData() {
-        TaskDto taskDto = new TaskDto();
-        Optional<Task> allTask = taskDao.selectAllTask();
-        BeanUtils.copyProperties(allTask.orElse(new Task()), taskDto);
-        return taskDto;
+    public List<TaskDto> getTaskData() {
+        List<TaskDto> allTaskData = new ArrayList<>();
+        taskDao.selectAllTask().forEach(i -> {
+            TaskDto dto = new TaskDto();
+            BeanUtils.copyProperties(i, dto);
+            allTaskData.add(dto);
+        });
+        return allTaskData;
     }
 }
