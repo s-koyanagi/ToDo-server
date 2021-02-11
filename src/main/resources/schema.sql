@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users(
   ,password text NOT NULL
   ,email VARCHAR(256) NOT NULL
   ,admin_flag CHAR(1)
-  ,PRIMARY KEY (id)
+  ,PRIMARY KEY (user_id)
   ,UNIQUE KEY (email)
 );
 
