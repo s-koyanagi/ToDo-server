@@ -18,6 +18,7 @@ import java.util.Collection;
 public class User implements UserDetails {
 
     @Id
+    @Column(name = "user_id")
     Integer id;
     @Column(name = "full_name")
     String fullName;
