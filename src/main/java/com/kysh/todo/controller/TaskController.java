@@ -16,8 +16,8 @@ public class TaskController {
     @Autowired
     TaskService taskService;
 
-    @RequestMapping(path = "/get-data")
-    public ResponseEntity<List<TaskDto>>getData(){
+    @RequestMapping(path = "/get-list")
+    public ResponseEntity<List<TaskDto>>getTaskList(){
         return ResponseEntity.ok(taskService.getTaskData());
     }
 }

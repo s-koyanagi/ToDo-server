@@ -1,7 +1,6 @@
 package com.kysh.todo.service;
 
 import com.kysh.todo.domain.dto.TaskDto;
-import com.kysh.todo.domain.entity.Task;
 import com.kysh.todo.domain.repository.TaskDao;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
