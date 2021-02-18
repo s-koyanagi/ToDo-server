@@ -9,3 +9,8 @@ INSERT INTO tasks VALUES (1,1,'筋トレ（腹筋，バーベル）',1,TO_DATE('
                          (8,2,'目標提出',1,TO_DATE('2021/01/16', 'YYYY/MM/DD')),
                          (9,2,'人事メール返信',1,TO_DATE('2021/04/01', 'YYYY/MM/DD')),
                          (10,1,'MNP予約番号発行',3,TO_DATE('2021/04/15', 'YYYY/MM/DD'));
+INSERT INTO projects VALUES (1,'プライベート','#A5D6A7'),
+                            (2,'仕事','#FFCC80'),
+                            (3,'家事','#84FFFF'),
+                            (4,'筋トレ','#CE93D8');
+
