@@ -13,4 +13,7 @@ INSERT INTO projects VALUES (1,'プライベート','#A5D6A7'),
                             (2,'仕事','#FFCC80'),
                             (3,'家事','#84FFFF'),
                             (4,'筋トレ','#CE93D8');
+INSERT INTO status VALUES (1,'未着手','#EF9A9A'),
+                          (2,'着手中','#90CAF9'),
+                          (3,'完了','#DCE775');
 
