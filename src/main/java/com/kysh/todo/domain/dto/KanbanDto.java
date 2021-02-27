@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class InitialDisplayDto {
+public class KanbanDto {
 
     private List<ProjectDto> projectData;
     private List<TaskDto> taskData;
