@@ -9,5 +9,6 @@ public class KanbanDto {
 
     private List<ProjectDto> projectData;
     private List<TaskDto> taskData;
+    private List<StatusDto> statusData;
 
 }
