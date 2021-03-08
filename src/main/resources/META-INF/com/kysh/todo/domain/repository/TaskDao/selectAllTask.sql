@@ -1,6 +1,6 @@
 SELECT
     task_id
-    ,project_id
+    ,category_id
     ,subject
     ,status_id
     ,dead_line

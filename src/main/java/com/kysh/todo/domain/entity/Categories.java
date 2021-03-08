@@ -10,14 +10,14 @@ import org.seasar.doma.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "projects")
-public class Project {
+@Table(name = "categories")
+public class Categories {
 
     @Id
-    @Column(name = "project_id")
-    private Integer projectId;
-    @Column(name = "project_name")
-    private String projectName;
+    @Column(name = "category_id")
+    private Integer categoryId;
+    @Column(name = "category_name")
+    private String categoryName;
     @Column(name = "color")
     private String color;
 

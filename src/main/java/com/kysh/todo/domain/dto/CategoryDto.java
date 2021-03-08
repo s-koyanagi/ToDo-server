@@ -3,10 +3,10 @@ package com.kysh.todo.domain.dto;
 import lombok.Data;
 
 @Data
-public class ProjectDto {
+public class CategoryDto {
 
-    private Integer projectId;
-    private String projectName;
+    private Integer categoryId;
+    private String categoryName;
     private String color;
 
 }
