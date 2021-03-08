@@ -12,18 +12,18 @@ CREATE TABLE IF NOT EXISTS users(
 
 CREATE TABLE IF NOT EXISTS tasks(
   task_id SERIAL
-  ,project_id integer NOT NULL
+  ,category_id integer NOT NULL
   ,subject VARCHAR(128) NOT NULL
   ,status_Id integer NOT NULL
   ,dead_line date
   ,PRIMARY KEY (task_id)
 );
 
-CREATE TABLE IF NOT EXISTS projects(
-  project_id SERIAL
-  ,project_name VARCHAR(128) NOT NULL
+CREATE TABLE IF NOT EXISTS categories(
+  category_id SERIAL
+  ,category_name VARCHAR(128) NOT NULL
   ,color VARCHAR(128) NOT NULL
-  ,PRIMARY KEY(project_id)
+  ,PRIMARY KEY(category_id)
 );
 
 CREATE TABLE IF NOT EXISTS status(
