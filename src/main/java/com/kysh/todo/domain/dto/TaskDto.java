@@ -8,7 +8,7 @@ import java.util.Date;
 public class TaskDto {
 
     private Integer taskId;
-    private Integer projectId;
+    private Integer categoryId;
     private String subject;
     private Integer statusId;
     private Date deadLine;

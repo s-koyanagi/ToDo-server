@@ -18,8 +18,8 @@ public class Task {
     @Id
     @Column(name = "task_id")
     private Integer taskId;
-    @Column(name = "project_id")
-    private Integer projectId;
+    @Column(name = "category_id")
+    private Integer categoryId;
     @Column(name = "subject")
     private String subject;
     @Column(name = "status_id")
