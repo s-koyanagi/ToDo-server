@@ -7,7 +7,7 @@ import org.seasar.doma.Entity;
 import org.seasar.doma.Id;
 import org.seasar.doma.Table;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -25,6 +25,6 @@ public class Task {
     @Column(name = "status_id")
     private Integer statusId;
     @Column(name = "dead_line")
-    private Date deadLine;
+    private LocalDate deadLine;
 
 }

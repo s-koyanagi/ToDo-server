@@ -2,7 +2,7 @@ package com.kysh.todo.domain.dto;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class TaskDto {
@@ -11,6 +11,6 @@ public class TaskDto {
     private Integer categoryId;
     private String subject;
     private Integer statusId;
-    private Date deadLine;
+    private LocalDate deadLine;
 
 }
