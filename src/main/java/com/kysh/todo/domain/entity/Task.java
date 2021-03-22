@@ -2,10 +2,7 @@ package com.kysh.todo.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.seasar.doma.Column;
-import org.seasar.doma.Entity;
-import org.seasar.doma.Id;
-import org.seasar.doma.Table;
+import org.seasar.doma.*;
 
 import java.time.LocalDate;
 
@@ -16,6 +13,7 @@ import java.time.LocalDate;
 public class Task {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
     private Integer taskId;
     @Column(name = "category_id")
