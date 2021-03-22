@@ -2,6 +2,7 @@ package com.kysh.todo.domain.repository;
 
 import com.kysh.todo.domain.entity.Task;
 import org.seasar.doma.Dao;
+import org.seasar.doma.Insert;
 import org.seasar.doma.Select;
 import org.seasar.doma.boot.ConfigAutowireable;
 
@@ -13,5 +14,8 @@ public interface TaskDao {
 
     @Select
     List<Task> selectAllTask();
+
+    @Insert
+    int insertTask(Task task);
 
 }
