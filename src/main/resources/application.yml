@@ -11,3 +11,5 @@ spring:
       path: /h2-console
       setting:
         web-allow-others: true
+doma:
+  dialect: postgres
