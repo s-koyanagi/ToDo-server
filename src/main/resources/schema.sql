@@ -1,3 +1,10 @@
+CREATE SEQUENCE task_id_seq
+    INCREMENT BY 1
+    MAXVALUE 99999999
+    START WITH 1
+    NO CYCLE
+;
+
 CREATE TABLE IF NOT EXISTS users(
   user_id SERIAL
   ,full_name VARCHAR(128) NOT NULL
@@ -11,10 +18,10 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 CREATE TABLE IF NOT EXISTS tasks(
-  task_id SERIAL
-  ,category_id integer NOT NULL
+  task_id INTEGER DEFAULT nextval('task_id_seq')
+  ,category_id INTEGER NOT NULL
   ,subject VARCHAR(128) NOT NULL
-  ,status_Id integer NOT NULL
+  ,status_Id INTEGER NOT NULL
   ,dead_line date
   ,PRIMARY KEY (task_id)
 );
