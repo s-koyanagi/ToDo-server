@@ -2,6 +2,8 @@ package com.kysh.todo.domain.form;
 
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 public class TaskForm {
 
@@ -9,5 +11,5 @@ public class TaskForm {
 
     private String subject;
 
-    private String deadLine;
+    private LocalDate deadLine;
 }
